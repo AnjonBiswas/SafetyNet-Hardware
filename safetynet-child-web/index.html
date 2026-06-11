@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2196F3" />
+    <meta
+      name="description"
+      content="SafetyNet Child is a child safety web application for SOS alerts, trusted contacts, parent linking, and emergency support."
+    />
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <title>SafetyNet Child</title>
+  </head>
+  <body class="auth-locked">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Authentication gate shown before the main app for new or signed-out users. -->
+    <section
+      class="auth-screen"
+      aria-labelledby="auth-screen-title"
+      data-auth-screen
+    >
+      <div class="auth-screen__panel">
+        <div class="auth-brand">
+          <img
+            src="../Child.svg"
+            alt="SafetyNet Child logo"
+            class="brand-logo brand-logo--auth"
+          />
+          <div class="brand-copy">
+            <p class="brand-kicker">Child Safety Network</p>
+            <p class="brand-title brand-title--auth">SafetyNet Child</p>
+          </div>
+        </div>
+
+        <div class="auth-screen__intro">
+          <p class="section-kicker">Welcome to SafetyNet Child</p>
+          <h1 id="auth-screen-title">Sign in to your safety dashboard</h1>
+          <p class="section-description">
+            Create a child account or sign in to access SOS tools, trusted contacts, and guardian alerts.
+          </p>
+        </div>
+
+        <div class="auth-screen__tabs" role="tablist" aria-label="Authentication options">
+          <button
+            type="button"
+            class="auth-screen__tab is-active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="login-panel"
+            id="login-tab"
+            data-auth-tab="login"
+          >
+            Sign In
+          </button>
+          <button
+            type="button"
+            class="auth-screen__tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="signup-panel"
+            id="signup-tab"
+            data-auth-tab="signup"
+          >
+            Create Account
+          </button>
+        </div>
+
+        <div class="auth-screen__forms">
+          <section
+            id="login-panel"
+            class="auth-panel is-active"
+            role="tabpanel"
+            aria-labelledby="login-tab"
+            data-auth-panel="login"
+          >
+            <form class="auth-form" data-auth-form="login">
+              <div class="form-group">
+                <label for="auth-login-email">Email</label>
+                <input
+                  id="auth-login-email"
+                  class="input"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="auth-login-password">Password</label>
+                <input
+                  id="auth-login-password"
+                  class="input"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  minlength="6"
+                  required
+                />
+              </div>
+
+              <div class="auth-form__actions">
+                <button type="submit" class="button button--large">Sign In</button>
+                <button type="button" class="button button--secondary" data-action="forgot-password">
+                  Reset Password
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <section
+            id="signup-panel"
+            class="auth-panel"
+            role="tabpanel"
+            aria-labelledby="signup-tab"
+            data-auth-panel="signup"
+            hidden
+          >
+            <form class="auth-form" data-auth-form="signup">
+              <div class="form-group">
+                <label for="auth-signup-name">Full Name</label>
+                <input
+                  id="auth-signup-name"
+                  class="input"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="auth-signup-phone">Phone Number</label>
+                <input
+                  id="auth-signup-phone"
+                  class="input"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="auth-signup-email">Email</label>
+                <input
+                  id="auth-signup-email"
+                  class="input"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="auth-signup-password">Password</label>
+                <input
+                  id="auth-signup-password"
+                  class="input"
+                  name="password"
+                  type="password"
+                  autocomplete="new-password"
+                  minlength="6"
+                  required
+                />
+              </div>
+
+              <div class="auth-form__actions">
+                <button type="submit" class="button button--large">Create Child Account</button>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <p class="auth-screen__help" data-auth-message>
+          Use your child account email and password to enter the app.
+        </p>
+      </div>
+    </section>
+
+    <!-- App shell header with identity, connectivity, and session actions. -->
+    <header class="site-header" aria-label="Application header" data-app-shell hidden>
+      <div class="brand-block">
+        <a class="brand-link" href="#home-section" aria-label="SafetyNet Child home">
+          <img
+            src="../Child.svg"
+            alt="SafetyNet Child logo"
+            class="brand-logo brand-logo--header"
+          />
+          <div class="brand-copy">
+            <p class="brand-kicker">Child Safety Network</p>
+            <h1 class="brand-title">SafetyNet Child</h1>
+          </div>
+        </a>
+      </div>
+
+      <div class="header-status">
+        <p
+          class="status-pill is-online"
+          role="status"
+          aria-live="polite"
+          data-status-indicator="network"
+        >
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-status-text>Online</span>
+        </p>
+      </div>
+
+      <div class="header-actions">
+        <details class="profile-menu">
+          <summary
+            class="profile-toggle"
+            aria-label="Open user profile menu"
+            data-action="toggle-profile-menu"
+          >
+            <span class="avatar" aria-hidden="true">SC</span>
+            <span class="profile-summary">
+              <span class="profile-name">Safe Child</span>
+              <span class="profile-role">Child Account</span>
+            </span>
+          </summary>
+
+          <div class="profile-dropdown" role="menu" aria-label="Profile actions">
+            <a href="#profile-section" role="menuitem">View profile</a>
+            <button type="button" role="menuitem" data-action="open-settings">
+              Settings
+            </button>
+            <button type="button" role="menuitem" data-action="open-login">
+              Switch account
+            </button>
+          </div>
+        </details>
+
+        <button
+          class="logout-button"
+          type="button"
+          aria-label="Log out of SafetyNet Child"
+          data-action="logout"
+        >
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- Main single-page application content. All key features remain readable without JavaScript. -->
+    <main id="main-content" class="app-main" tabindex="-1" data-app-shell hidden>
+      <!-- Priority section for emergency activation. -->
+      <section
+        id="home-section"
+        class="app-section sos-panel"
+        data-section="home"
+        aria-labelledby="sos-panel-title"
+      >
+        <div class="section-heading">
+          <p class="section-kicker">Emergency Assistance</p>
+          <h2 id="sos-panel-title">SOS Panel</h2>
+          <p class="section-description">
+            Press and hold the SOS button for two seconds to trigger an emergency alert.
+          </p>
+        </div>
+
+        <div class="sos-layout">
+          <button
+            class="sos-button"
+            type="button"
+            aria-label="Hold SOS button for two seconds to activate an alert"
+            data-action="activate-sos"
+          >
+            <span class="sos-button-ring" aria-hidden="true"></span>
+            <span class="sos-button-core">SOS</span>
+          </button>
+
+          <div class="sos-meta">
+            <p class="hold-instruction">Hold for 2 seconds to activate</p>
+
+            <div
+              class="countdown-panel"
+              role="status"
+              aria-live="polite"
+              aria-label="SOS hold countdown"
+            >
+              <span class="countdown-label">Activation countdown</span>
+              <progress
+                class="countdown-progress"
+                value="0"
+                max="2000"
+                aria-label="SOS activation progress"
+              >
+                0%
+              </progress>
+              <span class="countdown-value" data-sos-countdown>0.0s</span>
+            </div>
+
+            <div class="location-card">
+              <h3>Current Location</h3>
+              <p data-location-status>Location access ready</p>
+              <address data-location-display>
+                23.8103, 90.4125
+              </address>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Snapshot of real-time app and device state. -->
+      <section
+        class="app-section status-dashboard"
+        data-section="status"
+        aria-labelledby="status-dashboard-title"
+      >
+        <div class="section-heading">
+          <p class="section-kicker">System Health</p>
+          <h2 id="status-dashboard-title">Status Dashboard</h2>
+          <p class="section-description">
+            Track app connectivity, hardware pairing, battery level, and sync activity.
+          </p>
+        </div>
+
+        <div class="status-grid">
+          <article class="status-card" aria-labelledby="connection-status-title">
+            <h3 id="connection-status-title">Connection Status</h3>
+            <p class="status-value" data-connection-status>Connected</p>
+            <p class="status-note">Realtime Database link is active.</p>
+          </article>
+
+          <article class="status-card" aria-labelledby="device-status-title">
+            <h3 id="device-status-title">Device Status</h3>
+            <p class="status-value" data-device-status>No hardware linked</p>
+            <p class="status-note">Wearable or external device pairing appears here.</p>
+          </article>
+
+          <article class="status-card" aria-labelledby="battery-status-title">
+            <h3 id="battery-status-title">Battery Level</h3>
+            <p class="status-value" data-battery-level>Unknown</p>
+            <p class="status-note">Shown when the browser exposes battery information.</p>
+          </article>
+
+          <article class="status-card" aria-labelledby="sync-status-title">
+            <h3 id="sync-status-title">Last Sync</h3>
+            <p class="status-value" data-last-sync>Just now</p>
+            <p class="status-note">Latest successful cloud synchronization time.</p>
+          </article>
+        </div>
+
+        <div class="device-pairing-card" aria-labelledby="device-pairing-title">
+          <div>
+            <h3 id="device-pairing-title">Hardware Pairing</h3>
+            <p class="status-note">
+              Bind your ESP32-CAM hardware device ID so live GPS, sound, motion, and SOS events appear here.
+            </p>
+          </div>
+          <form class="device-pairing-form" data-device-form>
+            <label class="form-group" for="device-id-input">
+              <span>Device ID</span>
+              <input
+                id="device-id-input"
+                class="input"
+                name="deviceId"
+                type="text"
+                value="child-001"
+                placeholder="child-001"
+                autocomplete="off"
+              />
+            </label>
+            <div class="device-pairing-actions">
+              <button type="submit" class="button">Bind Device</button>
+              <span class="device-pairing-meta" data-device-binding-status>No device bound yet.</span>
+            </div>
+          </form>
+        </div>
+
+        <div class="device-pairing-card" aria-labelledby="hardware-simulator-title">
+          <div>
+            <h3 id="hardware-simulator-title">Hardware Test Lab</h3>
+            <p class="status-note">
+              Use these safe simulator actions to test Firebase hardware updates before uploading firmware.
+            </p>
+          </div>
+          <div class="hardware-test-actions">
+            <button type="button" class="button button--secondary" data-action="simulate-heartbeat">
+              Send Heartbeat
+            </button>
+            <button type="button" class="button button--danger" data-action="simulate-sos">
+              Trigger SOS
+            </button>
+            <button type="button" class="button button--secondary" data-action="simulate-fall">
+              Trigger Fall
+            </button>
+            <button type="button" class="button button--secondary" data-action="simulate-scream">
+              Trigger Scream
+            </button>
+          </div>
+          <p class="device-pairing-meta" data-hardware-test-status>
+            Ready for simulator testing.
+          </p>
+        </div>
+      </section>
+
+      <!-- Quick access to trusted contacts with room for JavaScript-rendered cards. -->
+      <section
+        class="app-section quick-contacts"
+        data-section="contacts"
+        aria-labelledby="quick-contacts-title"
+      >
+        <div class="section-heading">
+          <p class="section-kicker">Trusted People</p>
+          <h2 id="quick-contacts-title">Quick Contacts</h2>
+          <p class="section-description">
+            Keep up to six trusted contacts ready for immediate communication.
+          </p>
+        </div>
+
+        <div
+          class="contact-grid"
+          role="list"
+          aria-label="Quick contact cards"
+          data-contact-list
+        >
+          <article class="contact-card" role="listitem">
+            <h3>Amina Rahman</h3>
+            <p>Mother</p>
+            <p><a href="tel:+8801700000001">+880 1700-000001</a></p>
+            <button type="button" data-action="call-contact">Call</button>
+          </article>
+
+          <article class="contact-card" role="listitem">
+            <h3>Karim Hasan</h3>
+            <p>Father</p>
+            <p><a href="tel:+8801700000002">+880 1700-000002</a></p>
+            <button type="button" data-action="call-contact">Call</button>
+          </article>
+        </div>
+
+        <div class="section-actions">
+          <button
+            type="button"
+            aria-label="Add a quick contact"
+            data-action="open-add-contact"
+          >
+            Add Contact
+          </button>
+          <p class="section-limit">Maximum 6 quick contacts.</p>
+        </div>
+      </section>
+
+      <!-- Emergency services remain available through direct dial links even if JavaScript is unavailable. -->
+      <section
+        class="app-section emergency-helplines"
+        data-section="helplines"
+        aria-labelledby="emergency-helplines-title"
+      >
+        <div class="section-heading">
+          <p class="section-kicker">Emergency Services</p>
+          <h2 id="emergency-helplines-title">Emergency Helplines</h2>
+          <p class="section-description">
+            Tap a service to place a direct call from a supported device.
+          </p>
+        </div>
+
+        <ul class="helpline-list" aria-label="Emergency helpline numbers">
+          <li>
+            <a href="tel:100">
+              <span aria-hidden="true">&#128659;</span>
+              <span>Police</span>
+              <strong>100</strong>
+            </a>
+          </li>
+          <li>
+            <a href="tel:102">
+              <span aria-hidden="true">&#128657;</span>
+              <span>Ambulance</span>
+              <strong>102</strong>
+            </a>
+          </li>
+          <li>
+            <a href="tel:101">
+              <span aria-hidden="true">&#128658;</span>
+              <span>Fire</span>
+              <strong>101</strong>
+            </a>
+          </li>
+          <li>
+            <a href="tel:1091">
+              <span aria-hidden="true">&#128110;&#8205;&#9792;&#65039;</span>
+              <span>Women Helpline</span>
+              <strong>1091</strong>
+            </a>
+          </li>
+          <li>
+            <a href="tel:1098">
+              <span aria-hidden="true">&#129490;</span>
+              <span>Child Helpline</span>
+              <strong>1098</strong>
+            </a>
+          </li>
+          <li>
+            <a href="tel:112">
+              <span aria-hidden="true">&#127344;</span>
+              <span>Emergency</span>
+              <strong>112</strong>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Parent or guardian linking overview and actions. -->
+      <section
+        class="app-section parent-linking"
+        data-section="parents"
+        aria-labelledby="parent-linking-title"
+      >
+        <div class="section-heading">
+          <p class="section-kicker">Guardian Access</p>
+          <h2 id="parent-linking-title">Parent Linking</h2>
+          <p class="section-description">
+            Manage linked parents or guardians who receive alerts and safety updates.
+          </p>
+        </div>
+
+        <div class="parent-list" role="list" aria-label="Linked parents" data-parent-list>
+          <article class="parent-card" role="listitem">
+            <div>
+              <h3>Samira Rahman</h3>
+              <p>samira@example.com</p>
+            </div>
+            <button type="button" data-action="remove-parent">Remove</button>
+          </article>
+
+          <article class="parent-card" role="listitem">
+            <div>
+              <h3>Rafiq Hasan</h3>
+              <p>rafiq@example.com</p>
+            </div>
+            <button type="button" data-action="remove-parent">Remove</button>
+          </article>
+        </div>
+
+        <div class="section-actions">
+          <button
+            type="button"
+            aria-label="Link a parent account"
+            data-action="open-link-parent"
+          >
+            Link Parent
+          </button>
+        </div>
+      </section>
+
+      <!-- Alert history stays readable without JavaScript and can later be enhanced with pagination. -->
+      <section
+        class="app-section alert-history"
+        data-section="history"
+        aria-labelledby="alert-history-title"
+      >
+        <div class="section-heading">
+          <p class="section-kicker">Past Alerts</p>
+          <h2 id="alert-history-title">Alert History</h2>
+          <p class="section-description">
+            Review recent alerts in reverse chronological order with status and location details.
+          </p>
+        </div>
+
+        <div class="history-list" aria-live="polite" data-alert-list>
+          <article class="alert-card" data-alert-id="alert_003">
+            <header class="alert-card-header">
+              <h3>SOS Alert</h3>
+              <span class="alert-status is-active">Active</span>
+            </header>
+            <p><strong>Time:</strong> 09 Jun 2026, 11:42 AM</p>
+            <p><strong>Location:</strong> Dhanmondi, Dhaka</p>
+            <button type="button" data-action="open-alert-details">View details</button>
+          </article>
+
+          <article class="alert-card" data-alert-id="alert_002">
+            <header class="alert-card-header">
+              <h3>Fall Alert</h3>
+              <span class="alert-status is-acknowledged">Acknowledged</span>
+            </header>
+            <p><strong>Time:</strong> 08 Jun 2026, 04:05 PM</p>
+            <p><strong>Location:</strong> Mohammadpur, Dhaka</p>
+            <button type="button" data-action="open-alert-details">View details</button>
+          </article>
+
+          <article class="alert-card" data-alert-id="alert_001">
+            <header class="alert-card-header">
+              <h3>Scream Alert</h3>
+              <span class="alert-status is-resolved">Resolved</span>
+            </header>
+            <p><strong>Time:</strong> 07 Jun 2026, 07:15 PM</p>
+            <p><strong>Location:</strong> Uttara, Dhaka</p>
+            <button type="button" data-action="open-alert-details">View details</button>
+          </article>
+        </div>
+
+        <div class="section-actions">
+          <button type="button" data-action="load-more-alerts">Load More</button>
+          <button type="button" data-action="clear-history">Clear History</button>
+        </div>
+      </section>
+
+      <!-- Profile summary provides a non-JavaScript destination for bottom navigation. -->
+      <section
+        id="profile-section"
+        class="app-section profile-overview"
+        data-section="profile"
+        aria-labelledby="profile-overview-title"
+      >
+        <div class="section-heading">
+          <p class="section-kicker">Account Overview</p>
+          <h2 id="profile-overview-title">Profile</h2>
+          <p class="section-description">
+            Review account identity, linked guardians, and app preferences.
+          </p>
+        </div>
+
+        <article class="profile-card">
+          <h3>Safe Child</h3>
+          <p>Email: child@example.com</p>
+          <p>Primary safety mode: SOS + guardian alerts</p>
+          <button type="button" data-action="open-settings">Open Settings</button>
+        </article>
+      </section>
+    </main>
+
+    <!-- Mobile-first bottom navigation for quick movement across core sections. -->
+    <footer class="mobile-tabbar" aria-label="Primary navigation" data-app-shell hidden>
+      <nav class="tab-navigation">
+        <a href="#home-section" aria-label="Go to home section" data-action="navigate-home">
+          <span aria-hidden="true">&#127968;</span>
+          <span>Home</span>
+        </a>
+        <a
+          href="#quick-contacts-title"
+          aria-label="Go to contacts section"
+          data-action="navigate-contacts"
+        >
+          <span aria-hidden="true">&#128199;</span>
+          <span>Contacts</span>
+        </a>
+        <a
+          href="#alert-history-title"
+          aria-label="Go to history section"
+          data-action="navigate-history"
+        >
+          <span aria-hidden="true">&#128344;</span>
+          <span>History</span>
+        </a>
+        <a
+          href="#profile-section"
+          aria-label="Go to profile section"
+          data-action="navigate-profile"
+        >
+          <span aria-hidden="true">&#128100;</span>
+          <span>Profile</span>
+        </a>
+      </nav>
+    </footer>
+
+    <!-- Modal dialogs are hidden by default and enhanced via JavaScript when available. -->
+    <dialog class="app-modal" data-modal="login" aria-labelledby="login-modal-title">
+      <form method="dialog" class="modal-layout">
+        <header class="modal-header">
+          <h2 id="login-modal-title">Login</h2>
+          <button type="submit" aria-label="Close login dialog">Close</button>
+        </header>
+        <div class="modal-body">
+          <label for="login-email">Email</label>
+          <input id="login-email" name="email" type="email" autocomplete="email" />
+
+          <label for="login-password">Password</label>
+          <input
+            id="login-password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+          />
+        </div>
+        <footer class="modal-footer">
+          <button type="button" data-action="login">Sign In</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="app-modal" data-modal="sos-confirmation" aria-labelledby="sos-modal-title">
+      <form method="dialog" class="modal-layout">
+        <header class="modal-header">
+          <h2 id="sos-modal-title">Confirm SOS Alert</h2>
+          <button type="submit" aria-label="Close SOS confirmation dialog">Close</button>
+        </header>
+        <div class="modal-body">
+          <p>
+            Confirm that you want to send an SOS alert to linked guardians and emergency systems.
+          </p>
+        </div>
+        <footer class="modal-footer">
+          <button type="button" data-action="cancel-sos">Cancel</button>
+          <button type="button" data-action="confirm-sos">Send Alert</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="app-modal" data-modal="add-contact" aria-labelledby="contact-modal-title">
+      <form method="dialog" class="modal-layout">
+        <header class="modal-header">
+          <h2 id="contact-modal-title">Add Quick Contact</h2>
+          <button type="submit" aria-label="Close add contact dialog">Close</button>
+        </header>
+        <div class="modal-body">
+          <label for="contact-name">Name</label>
+          <input id="contact-name" name="contact-name" type="text" />
+
+          <label for="contact-role">Relationship</label>
+          <input id="contact-role" name="contact-role" type="text" />
+
+          <label for="contact-phone">Phone</label>
+          <input id="contact-phone" name="contact-phone" type="tel" />
+        </div>
+        <footer class="modal-footer">
+          <button type="button" data-action="save-contact">Save Contact</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="app-modal" data-modal="link-parent" aria-labelledby="parent-modal-title">
+      <div class="modal-layout linking-modal">
+        <header class="modal-header">
+          <h2 id="parent-modal-title">Link Parent</h2>
+          <button type="button" aria-label="Close link parent dialog" data-action="close-link-parent">Close</button>
+        </header>
+
+        <div class="linking-tabs" role="tablist" aria-label="Parent linking methods">
+          <button type="button" class="auth-screen__tab is-active" data-child-linking-tab="scan" aria-selected="true">
+            Scan Parent QR
+          </button>
+          <button type="button" class="auth-screen__tab" data-child-linking-tab="otp" aria-selected="false">
+            Enter Parent OTP
+          </button>
+          <button type="button" class="auth-screen__tab" data-child-linking-tab="share" aria-selected="false">
+            My Child Code
+          </button>
+        </div>
+
+        <section data-child-linking-panel="scan" class="linking-panel">
+          <p class="linking-copy" data-child-qr-instructions>
+            Ask your parent to open the SafetyNet Parent app and show the QR code.
+          </p>
+          <div class="qr-reader-shell">
+            <div id="child-parent-qr-reader" class="qr-reader"></div>
+            <div class="scanner-overlay" data-child-scanner-overlay data-scanner-state="scanning">
+              Scanning for a parent QR code…
+            </div>
+          </div>
+        </section>
+
+        <section data-child-linking-panel="otp" class="linking-panel" hidden>
+          <p class="linking-copy" data-child-otp-instructions>
+            Ask your parent for the 6-digit code from their app. Codes expire in 5 minutes.
+          </p>
+          <div class="otp-group" aria-label="6-digit parent OTP code">
+            <input class="otp-input child-otp-input" inputmode="numeric" maxlength="1" aria-label="Parent OTP digit 1" />
+            <input class="otp-input child-otp-input" inputmode="numeric" maxlength="1" aria-label="Parent OTP digit 2" />
+            <input class="otp-input child-otp-input" inputmode="numeric" maxlength="1" aria-label="Parent OTP digit 3" />
+            <input class="otp-input child-otp-input" inputmode="numeric" maxlength="1" aria-label="Parent OTP digit 4" />
+            <input class="otp-input child-otp-input" inputmode="numeric" maxlength="1" aria-label="Parent OTP digit 5" />
+            <input class="otp-input child-otp-input" inputmode="numeric" maxlength="1" aria-label="Parent OTP digit 6" />
+          </div>
+          <button type="button" data-action="verify-parent-link-otp">Verify Parent OTP</button>
+        </section>
+
+        <section data-child-linking-panel="share" class="linking-panel" hidden>
+          <p class="linking-copy">
+            If your parent wants to scan your code instead, show this QR code or share the 6-digit child code.
+          </p>
+          <div class="parent-qr-card">
+            <div class="parent-qr-code" data-child-link-qr-code aria-label="Child linking QR code"></div>
+            <div class="parent-code-meta">
+              <p class="linking-code-label">Child code</p>
+              <strong class="linking-code-value" data-child-link-code>------</strong>
+              <p class="linking-code-expiry">Expires at <span data-child-link-expiry>--:--</span></p>
+            </div>
+          </div>
+          <button type="button" class="button button--secondary" data-action="regenerate-child-link-code">
+            Generate New Child Code
+          </button>
+        </section>
+
+        <p class="linking-status" data-child-linking-status data-state="idle"></p>
+      </div>
+    </dialog>
+
+    <dialog class="app-modal" data-modal="alert-details" aria-labelledby="alert-modal-title">
+      <form method="dialog" class="modal-layout">
+        <header class="modal-header">
+          <h2 id="alert-modal-title">Alert Details</h2>
+          <button type="submit" aria-label="Close alert details dialog">Close</button>
+        </header>
+        <div class="modal-body">
+          <p><strong>Type:</strong> <span data-alert-type>SOS</span></p>
+          <p><strong>Status:</strong> <span data-alert-status>Active</span></p>
+          <p><strong>Timestamp:</strong> <span data-alert-time>09 Jun 2026, 11:42 AM</span></p>
+          <p><strong>Location:</strong> <span data-alert-location>Dhanmondi, Dhaka</span></p>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="app-modal" data-modal="settings" aria-labelledby="settings-modal-title">
+      <form method="dialog" class="modal-layout">
+        <header class="modal-header">
+          <h2 id="settings-modal-title">Settings</h2>
+          <button type="submit" aria-label="Close settings dialog">Close</button>
+        </header>
+        <div class="modal-body">
+          <label for="refresh-interval">Auto-refresh interval</label>
+          <select id="refresh-interval" name="refresh-interval">
+            <option value="15000">15 seconds</option>
+            <option value="30000" selected>30 seconds</option>
+            <option value="60000">60 seconds</option>
+          </select>
+
+          <label for="location-sharing">Location sharing</label>
+          <select id="location-sharing" name="location-sharing">
+            <option value="always" selected>Always enabled</option>
+            <option value="sos-only">SOS only</option>
+            <option value="off">Off</option>
+          </select>
+        </div>
+        <footer class="modal-footer">
+          <button type="button" data-action="save-settings">Save Settings</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <!-- Full-screen loading state for network and authentication work. -->
+    <div
+      class="loading-overlay"
+      aria-hidden="true"
+      aria-label="Loading"
+      data-loading-overlay
+      hidden
+    >
+      <div class="loader-panel" role="status" aria-live="polite">
+        <div class="loader-spinner" aria-hidden="true"></div>
+        <p>Connecting to SafetyNet services...</p>
+      </div>
+    </div>
+
+    <!-- Live region for toast notifications. JavaScript can clone the template below. -->
+    <section
+      class="toast-region"
+      aria-live="polite"
+      aria-atomic="true"
+      aria-label="Notifications"
+      data-toast-region
+    ></section>
+
+    <!-- Templates for JavaScript-driven rendering. They stay inert until cloned. -->
+    <template id="alert-card-template">
+      <article class="alert-card" data-alert-id="">
+        <header class="alert-card-header">
+          <h3 data-field="type">Alert Type</h3>
+          <span class="alert-status" data-field="status">Status</span>
+        </header>
+        <p><strong>Time:</strong> <span data-field="timestamp"></span></p>
+        <p><strong>Location:</strong> <span data-field="location"></span></p>
+        <button type="button" data-action="open-alert-details">View details</button>
+      </article>
+    </template>
+
+    <template id="contact-card-template">
+      <article class="contact-card" role="listitem">
+        <h3 data-field="name">Contact Name</h3>
+        <p data-field="relationship">Relationship</p>
+        <p><a href="tel:" data-field="phone-link">Phone Number</a></p>
+        <button type="button" data-action="call-contact">Call</button>
+      </article>
+    </template>
+
+    <template id="parent-card-template">
+      <article class="parent-card" role="listitem">
+        <div>
+          <h3 data-field="name">Parent Name</h3>
+          <p data-field="email">parent@example.com</p>
+        </div>
+        <button type="button" data-action="remove-parent">Remove</button>
+      </article>
+    </template>
+
+    <template id="toast-template">
+      <article class="toast toast-info" role="status" data-toast-type="info">
+        <p data-field="message">Notification message</p>
+      </article>
+    </template>
+
+    <noscript>
+      <div class="noscript-banner">
+        JavaScript is disabled. Core safety information remains visible, but live updates, Firebase
+        sync, and interactive dialogs require JavaScript.
+      </div>
+    </noscript>
+
+    <!-- Firebase Web SDK modules via CDN, followed by the app entry module. -->
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"
+    ></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

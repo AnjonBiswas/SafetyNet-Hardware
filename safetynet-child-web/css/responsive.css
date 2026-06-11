@@ -1,0 +1,670 @@
+/* Responsive system for SafetyNet Child
+   Mobile-first, with primary attention on current Android phone sizes. */
+
+/* Small devices (phones, 320px and up) */
+@media (min-width: 320px) {
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    padding-bottom: calc(var(--bottom-nav-height) + var(--spacing-xl));
+  }
+
+  .site-header,
+  .header {
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .brand-link {
+    gap: var(--spacing-sm);
+  }
+
+  .brand-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+  }
+
+  .brand-kicker,
+  .profile-role {
+    display: none;
+  }
+
+  .brand-title {
+    font-size: 1.05rem;
+  }
+
+  .header-actions {
+    gap: var(--spacing-xs);
+  }
+
+  .logout-button {
+    min-height: 44px;
+    padding: 0.75rem 0.9rem;
+    font-size: var(--font-size-sm);
+  }
+
+  .status-pill,
+  .profile-toggle,
+  .tab-navigation a,
+  .section-actions button,
+  .contact-card button,
+  .parent-card button,
+  .alert-card button,
+  .modal-header button,
+  .modal-footer button {
+    min-height: 44px;
+  }
+
+  .app-main,
+  .main-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) 0 var(--spacing-lg);
+  }
+
+  .auth-screen {
+    padding: var(--spacing-md);
+    align-items: start;
+  }
+
+  .auth-screen__panel {
+    width: min(100%, 540px);
+    margin: auto;
+    padding: var(--spacing-lg);
+    border-radius: 24px;
+  }
+
+  .app-section {
+    width: 100%;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+  }
+
+  .section-heading {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .section-description,
+  .status-note,
+  .section-limit,
+  .helpline-list a,
+  .alert-card p,
+  .contact-card p,
+  .parent-card p {
+    font-size: 0.97rem;
+  }
+
+  .sos-layout,
+  .sos-container {
+    gap: var(--spacing-md);
+    padding-block: var(--spacing-sm);
+  }
+
+  .sos-button {
+    width: 180px;
+    height: 180px;
+    margin-inline: auto;
+    font-size: 24px;
+  }
+
+  .sos-button-ring {
+    inset: 9px;
+  }
+
+  .hold-instruction,
+  .countdown-label,
+  .countdown-value {
+    font-size: 1rem;
+  }
+
+  .countdown-panel,
+  .location-card {
+    width: 100%;
+  }
+
+  .status-grid,
+  .parent-list,
+  .history-list,
+  .alert-list {
+    grid-template-columns: 1fr;
+  }
+
+  .status-card,
+  .contact-card,
+  .parent-card,
+  .alert-card,
+  .profile-card,
+  .location-card {
+    padding: var(--spacing-md);
+  }
+
+  .contact-grid,
+  .contacts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-sm);
+  }
+
+  .contact-card {
+    min-height: 170px;
+  }
+
+  .contact-card a,
+  .helpline-list a {
+    overflow-wrap: anywhere;
+  }
+
+  .helpline-list {
+    gap: var(--spacing-sm);
+  }
+
+  .helpline-list a,
+  .helpline-item {
+    min-height: 56px;
+    padding: 0.95rem 1rem;
+  }
+
+  .parent-card,
+  .alert-card {
+    align-items: flex-start;
+  }
+
+  .section-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .section-actions button {
+    width: 100%;
+  }
+
+  .mobile-tabbar,
+  .bottom-nav {
+    padding-inline: var(--spacing-sm);
+  }
+
+  .tab-navigation {
+    gap: 6px;
+  }
+
+  .tab-navigation a {
+    padding: 0.7rem 0.3rem;
+    font-size: 0.82rem;
+  }
+
+  .app-modal {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  .modal-content,
+  .modal-layout {
+    min-height: 100dvh;
+    width: 100%;
+    margin-top: auto;
+    padding: var(--spacing-lg) var(--spacing-md);
+    border-radius: 24px 24px 0 0;
+    animation: mobile-sheet-in var(--transition-normal);
+  }
+
+  .modal-header,
+  .modal-footer {
+    flex-wrap: wrap;
+  }
+
+  .modal-footer button {
+    flex: 1 1 100%;
+  }
+
+  .linking-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .parent-qr-code {
+    min-width: 180px;
+    min-height: 180px;
+  }
+
+  .toast-region,
+  .toast-container {
+    right: var(--spacing-sm);
+    left: var(--spacing-sm);
+    bottom: calc(var(--bottom-nav-height) + var(--spacing-sm));
+    width: auto;
+  }
+
+  .toast {
+    min-height: 52px;
+    padding: 0.9rem 1rem;
+  }
+}
+
+/* Popular Android widths and compact phone tuning */
+@media (min-width: 390px) {
+  .brand-title {
+    font-size: 1.1rem;
+  }
+
+  .app-section {
+    padding: var(--spacing-lg);
+  }
+
+  .sos-button {
+    width: 188px;
+    height: 188px;
+  }
+
+  .contact-grid,
+  .contacts-grid {
+    gap: var(--spacing-md);
+  }
+}
+
+@media (min-width: 480px) {
+  .site-header,
+  .header {
+    padding-inline: var(--spacing-lg);
+  }
+
+  .profile-summary {
+    display: inline-grid;
+  }
+
+  .brand-kicker {
+    display: block;
+  }
+
+  .section-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .section-actions button {
+    width: auto;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    padding-bottom: calc(var(--bottom-nav-height) + var(--spacing-lg));
+  }
+
+  .site-header,
+  .header {
+    padding: var(--spacing-md) max(var(--spacing-lg), calc((100vw - var(--content-width)) / 2 + var(--spacing-md)));
+  }
+
+  .app-main,
+  .main-content {
+    gap: var(--spacing-lg);
+    padding-top: var(--spacing-xl);
+  }
+
+  .app-section {
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-xl);
+  }
+
+  .auth-screen {
+    align-items: center;
+    padding: var(--spacing-xl);
+  }
+
+  .auth-screen__panel {
+    padding: var(--spacing-xl);
+  }
+
+  .sos-layout {
+    grid-template-columns: minmax(280px, 360px) minmax(280px, 1fr);
+    align-items: center;
+    gap: var(--spacing-xl);
+  }
+
+  .sos-button {
+    width: 220px;
+    height: 220px;
+    font-size: 2rem;
+  }
+
+  .status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-grid,
+  .contacts-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .parent-list,
+  .history-list,
+  .alert-list {
+    gap: var(--spacing-lg);
+  }
+
+  .parent-card {
+    align-items: center;
+  }
+
+  .app-modal {
+    display: grid;
+    place-items: center;
+    padding: var(--spacing-xl);
+  }
+
+  .modal-content,
+  .modal-layout {
+    min-height: auto;
+    max-width: 600px;
+    margin: auto;
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    animation: modal-fade-in var(--transition-normal);
+  }
+
+  .modal-footer button {
+    flex: 0 0 auto;
+  }
+}
+
+/* Large devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+  body {
+    padding-bottom: var(--spacing-xl);
+  }
+
+  .app-main,
+  .main-content {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: start;
+    grid-auto-rows: max-content;
+    width: min(100% - (var(--spacing-lg) * 2), 1200px);
+  }
+
+  .sos-panel,
+  .status-dashboard {
+    grid-column: span 12;
+  }
+
+  .quick-contacts,
+  .emergency-helplines,
+  .parent-linking,
+  .alert-history {
+    grid-column: span 6;
+  }
+
+  .profile-overview {
+    grid-column: span 12;
+  }
+
+  .site-header,
+  .header {
+    padding-inline: max(var(--spacing-xl), calc((100vw - 1200px) / 2 + var(--spacing-lg)));
+  }
+
+  .app-section {
+    padding: var(--spacing-xl);
+  }
+
+  .sos-button {
+    width: 250px;
+    height: 250px;
+    font-size: 2.2rem;
+  }
+
+  .contact-grid,
+  .contacts-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .mobile-tabbar,
+  .bottom-nav {
+    position: static;
+    width: min(100% - (var(--spacing-lg) * 2), 1200px);
+    margin: 0 auto var(--spacing-xl);
+    border: 1px solid rgba(189, 189, 189, 0.28);
+    border-radius: var(--radius-xl);
+  }
+
+  .tab-navigation a {
+    padding-block: 0.95rem;
+  }
+
+  .modal-content,
+  .modal-layout {
+    max-width: 700px;
+  }
+}
+
+/* Extra large devices (large desktops, 1440px and up) */
+@media (min-width: 1440px) {
+  html {
+    font-size: 17px;
+  }
+
+  .app-main,
+  .main-content,
+  .mobile-tabbar,
+  .bottom-nav {
+    width: min(100% - (var(--spacing-xl) * 2), 1320px);
+  }
+
+  .site-header,
+  .header {
+    padding-inline: max(var(--spacing-xl), calc((100vw - 1320px) / 2 + var(--spacing-lg)));
+  }
+
+  .sos-layout {
+    grid-template-columns: 360px 1fr;
+  }
+}
+
+/* Landscape orientation */
+@media (orientation: landscape) and (max-width: 1023px) {
+  .sos-layout {
+    grid-template-columns: minmax(220px, 300px) 1fr;
+    align-items: center;
+  }
+
+  .status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mobile-tabbar,
+  .bottom-nav {
+    padding-top: 6px;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0) + 6px);
+  }
+
+  .tab-navigation a {
+    min-height: 48px;
+  }
+}
+
+/* Hover effects on pointer-capable devices only */
+@media (hover: hover) and (pointer: fine) {
+  .contact-card:hover,
+  .alert-card:hover,
+  .parent-card:hover,
+  .status-card:hover,
+  .helpline-list li:hover,
+  .profile-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .sos-button:hover {
+    filter: saturate(1.04);
+  }
+}
+
+/* Touch-centric refinements */
+@media (hover: none) and (pointer: coarse) {
+  .site-header,
+  .header {
+    backdrop-filter: blur(10px);
+  }
+
+  .sos-button:active::before {
+    inset: -8px;
+    border-width: 10px;
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .helpline-list a:active,
+  .contact-card button:active,
+  .section-actions button:active,
+  .tab-navigation a:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast */
+@media (prefers-contrast: high) {
+  :root {
+    --border-soft: currentColor;
+    --divider: currentColor;
+  }
+
+  .app-section,
+  .status-card,
+  .contact-card,
+  .parent-card,
+  .alert-card,
+  .profile-card,
+  .location-card,
+  .helpline-list li,
+  .modal-content,
+  .modal-layout {
+    border-width: 2px;
+  }
+
+  .status-pill,
+  .alert-status,
+  .button,
+  .logout-button,
+  .section-actions button,
+  .modal-footer button {
+    outline: 2px solid currentColor;
+    outline-offset: 1px;
+  }
+
+  .countdown-progress,
+  .battery-indicator__bar {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Print */
+@media print {
+  :root {
+    --background: #ffffff;
+    --surface: #ffffff;
+    --text-primary: #000000;
+    --text-secondary: #000000;
+    --border-soft: #000000;
+    --divider: #000000;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+    background-image: none !important;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+    padding: 0;
+  }
+
+  .site-header,
+  .mobile-tabbar,
+  .bottom-nav,
+  .section-actions,
+  .logout-button,
+  .profile-menu,
+  .loading-overlay,
+  .toast-region,
+  .toast-container,
+  .app-modal,
+  .skip-link,
+  script,
+  noscript {
+    display: none !important;
+  }
+
+  .app-main,
+  .main-content {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
+  .app-section {
+    break-inside: avoid;
+    border: 1px solid #000000;
+    margin-bottom: 16px;
+    padding: 16px;
+  }
+
+  .sos-panel,
+  .status-dashboard,
+  .quick-contacts,
+  .parent-linking,
+  .profile-overview,
+  .emergency-helplines {
+    display: none;
+  }
+
+  .alert-history {
+    display: block;
+  }
+
+  .alert-card {
+    border: 1px solid #000000;
+    page-break-inside: avoid;
+  }
+
+  a {
+    color: #000000;
+    text-decoration: none;
+  }
+}
+
+@keyframes mobile-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

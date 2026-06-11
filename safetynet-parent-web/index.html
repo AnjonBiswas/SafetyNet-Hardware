@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1565C0" />
+    <meta
+      name="description"
+      content="SafetyNet Parent monitors linked children, receives live emergency alerts, and manages parent-child safety links."
+    />
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <title>SafetyNet Parent</title>
+  </head>
+  <body class="auth-locked">
+    <section class="parent-auth" data-auth-screen aria-labelledby="parent-auth-title">
+      <div class="parent-auth__panel">
+        <div class="parent-auth__brand">
+          <img src="../Parent.svg" alt="SafetyNet Parent logo" class="brand-logo" />
+          <div>
+            <p class="eyebrow">SafetyNet Parent</p>
+            <h1 id="parent-auth-title">Monitor your children in real time</h1>
+            <p class="auth-copy">
+              Sign in as a parent to receive emergency alerts, acknowledge incidents, and link children by OTP or QR payload.
+            </p>
+          </div>
+        </div>
+
+        <div class="auth-tabs" role="tablist" aria-label="Authentication options">
+          <button type="button" class="auth-tab is-active" data-auth-tab="login" aria-selected="true">
+            Sign In
+          </button>
+          <button type="button" class="auth-tab" data-auth-tab="signup" aria-selected="false">
+            Create Parent Account
+          </button>
+        </div>
+
+        <section class="auth-panel" data-auth-panel="login">
+          <form data-auth-form="login" class="auth-form">
+            <label class="field">
+              <span>Email</span>
+              <input class="input" type="email" name="email" autocomplete="email" required />
+            </label>
+            <label class="field">
+              <span>Password</span>
+              <input
+                class="input"
+                type="password"
+                name="password"
+                autocomplete="current-password"
+                minlength="6"
+                required
+              />
+            </label>
+            <div class="auth-actions">
+              <button type="submit" class="button button--primary">Sign In</button>
+              <button type="button" class="button button--secondary" data-action="forgot-password">
+                Reset Password
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="auth-panel" data-auth-panel="signup" hidden>
+          <form data-auth-form="signup" class="auth-form">
+            <label class="field">
+              <span>Full Name</span>
+              <input class="input" type="text" name="name" autocomplete="name" required />
+            </label>
+            <label class="field">
+              <span>Phone Number</span>
+              <input class="input" type="tel" name="phone" autocomplete="tel" required />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input class="input" type="email" name="email" autocomplete="email" required />
+            </label>
+            <label class="field">
+              <span>Password</span>
+              <input
+                class="input"
+                type="password"
+                name="password"
+                autocomplete="new-password"
+                minlength="6"
+                required
+              />
+            </label>
+            <button type="submit" class="button button--primary">Create Parent Account</button>
+          </form>
+        </section>
+
+        <p class="auth-message" data-auth-message>Use your parent account to continue.</p>
+      </div>
+    </section>
+
+    <header class="parent-header" data-app-shell hidden>
+      <div class="parent-header__brand">
+        <img src="../Parent.svg" alt="SafetyNet Parent logo" class="brand-logo brand-logo--header" />
+        <div>
+          <p class="eyebrow">SafetyNet Parent</p>
+          <h1>Family Safety Dashboard</h1>
+        </div>
+      </div>
+
+      <div class="parent-header__meta">
+        <div class="status-chip" data-status-chip>
+          <span class="status-dot"></span>
+          <span data-network-status>Online</span>
+        </div>
+        <div class="parent-profile">
+          <span class="parent-profile__avatar" data-parent-avatar>PA</span>
+          <div>
+            <strong data-parent-name>Parent Account</strong>
+            <span data-parent-role>Parent</span>
+          </div>
+        </div>
+        <button type="button" class="button button--secondary" data-action="logout">Logout</button>
+      </div>
+    </header>
+
+    <main class="parent-main" data-app-shell hidden>
+      <section class="dashboard-hero">
+        <div class="hero-card hero-card--alerts">
+          <p class="eyebrow">Live Alerts</p>
+          <h2 data-active-alert-count>0 Active Alerts</h2>
+          <p data-last-alert-summary>No active emergencies right now.</p>
+        </div>
+        <div class="hero-card">
+          <p class="eyebrow">Linked Children</p>
+          <h2 data-linked-child-count>0</h2>
+          <p>Monitor multiple children from one parent dashboard.</p>
+        </div>
+        <div class="hero-card">
+          <p class="eyebrow">Notifications</p>
+          <h2 data-notification-count>0 Unread</h2>
+          <label class="sound-toggle">
+            <input type="checkbox" data-sound-toggle checked />
+            <span>Sound alerts enabled</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="dashboard-grid">
+        <section class="panel panel--wide">
+          <div class="panel__header">
+            <div>
+              <p class="eyebrow">Emergency Feed</p>
+              <h2>Real-Time Alerts</h2>
+            </div>
+            <button type="button" class="button button--secondary" data-action="refresh-alerts">
+              Refresh
+            </button>
+          </div>
+          <div class="alert-feed" data-alert-feed>
+            <p class="empty-state">No alerts yet. Linked child alerts appear here instantly.</p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__header">
+            <div>
+              <p class="eyebrow">Link Child</p>
+              <h2>Secure Linking</h2>
+            </div>
+          </div>
+          <div class="linking-summary">
+            <p class="linking-help" data-link-result>
+              Open the secure linking flow to show your child a QR code or verify a child-generated code.
+            </p>
+            <button type="button" class="button button--primary" data-action="open-link-child">
+              Add Child
+            </button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__header">
+            <div>
+              <p class="eyebrow">Child Status</p>
+              <h2>Linked Children</h2>
+            </div>
+          </div>
+          <div class="children-list" data-children-list>
+            <p class="empty-state">No linked children yet.</p>
+          </div>
+        </section>
+
+        <section class="panel panel--wide">
+          <div class="panel__header">
+            <div>
+              <p class="eyebrow">Alert History</p>
+              <h2>Resolved and Acknowledged Alerts</h2>
+            </div>
+          </div>
+          <div class="history-list" data-history-list>
+            <p class="empty-state">No alert history available yet.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div class="loading-overlay" hidden data-loading-overlay>
+      <div class="loader-card">
+        <div class="loader"></div>
+        <p>Loading parent dashboard...</p>
+      </div>
+    </div>
+
+    <section class="toast-region" aria-live="polite" aria-atomic="true" data-toast-region></section>
+
+    <template id="child-card-template">
+      <article class="child-card">
+        <div>
+          <h3 data-field="name">Child Name</h3>
+          <p data-field="email">child@example.com</p>
+          <p data-field="location">Last location unknown</p>
+        </div>
+        <div class="child-card__meta">
+          <span class="badge badge--info" data-field="device">Device Unknown</span>
+          <span class="badge badge--success" data-field="status">Safe</span>
+        </div>
+      </article>
+    </template>
+
+    <template id="alert-card-template">
+      <article class="alert-card">
+        <div class="alert-card__header">
+          <div>
+            <p class="eyebrow" data-field="child">Child Name</p>
+            <h3 data-field="type">SOS Alert</h3>
+          </div>
+          <span class="badge badge--danger" data-field="status">Active</span>
+        </div>
+        <p data-field="time">Just now</p>
+        <p data-field="location">Location unavailable</p>
+        <div class="alert-card__actions">
+          <button type="button" class="button button--secondary" data-action="acknowledge-alert">
+            Acknowledge
+          </button>
+          <button type="button" class="button button--primary" data-action="resolve-alert">
+            Resolve
+          </button>
+        </div>
+      </article>
+    </template>
+
+    <template id="history-card-template">
+      <article class="history-card">
+        <div>
+          <p class="eyebrow" data-field="child">Child Name</p>
+          <h3 data-field="type">Alert Type</h3>
+        </div>
+        <p data-field="status">Resolved</p>
+        <p data-field="time">Time</p>
+      </article>
+    </template>
+
+    <template id="toast-template">
+      <article class="toast toast--info" data-toast-type="info">
+        <p data-field="message">Notification message</p>
+      </article>
+    </template>
+
+    <dialog class="app-modal" data-modal="link-child" aria-labelledby="link-child-title">
+      <div class="modal-layout linking-modal">
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow">Child Linking</p>
+            <h2 id="link-child-title">Connect a Child Account</h2>
+          </div>
+          <button type="button" class="button button--secondary" data-action="close-link-child">Close</button>
+        </header>
+
+        <div class="linking-tabs" role="tablist" aria-label="Linking methods">
+          <button type="button" class="auth-tab is-active" data-linking-tab="qr" aria-selected="true">
+            Show Parent QR
+          </button>
+          <button type="button" class="auth-tab" data-linking-tab="scan" aria-selected="false">
+            Scan Child QR
+          </button>
+          <button type="button" class="auth-tab" data-linking-tab="otp" aria-selected="false">
+            Enter Child OTP
+          </button>
+        </div>
+
+        <section data-linking-panel="qr" class="linking-panel">
+          <p class="linking-copy" data-qr-instructions>
+            Ask your child to scan this QR code from the SafetyNet Child app.
+          </p>
+          <div class="parent-qr-card">
+            <div class="parent-qr-code" data-parent-qr-code aria-label="Parent linking QR code"></div>
+            <div class="parent-code-meta">
+              <p class="linking-code-label">Manual code</p>
+              <strong class="linking-code-value" data-parent-link-code>------</strong>
+              <p class="linking-code-expiry">Expires at <span data-parent-link-expiry>--:--</span></p>
+            </div>
+          </div>
+          <div class="section-actions">
+            <button type="button" class="button button--secondary" data-action="regenerate-parent-code">
+              Generate New Code
+            </button>
+            <button type="button" class="button button--secondary" data-action="toggle-child-scanner">
+              Scan Child QR Instead
+            </button>
+          </div>
+        </section>
+
+        <section data-linking-panel="scan" class="linking-panel" hidden>
+          <p class="linking-copy" data-qr-instructions>
+            Ask your child to show the QR code from their SafetyNet Child app, then point your camera at it.
+          </p>
+          <div class="qr-reader-shell">
+            <div id="parent-qr-reader" class="qr-reader"></div>
+            <div class="scanner-overlay" data-scanner-overlay data-scanner-state="scanning">
+              Scanning for a child QR code…
+            </div>
+          </div>
+        </section>
+
+        <section data-linking-panel="otp" class="linking-panel" hidden>
+          <p class="linking-copy" data-otp-instructions>
+            Ask your child for the 6-digit code from their app. Codes expire in 5 minutes.
+          </p>
+          <div class="otp-group" aria-label="6-digit OTP code">
+            <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="OTP digit 1" />
+            <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="OTP digit 2" />
+            <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="OTP digit 3" />
+            <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="OTP digit 4" />
+            <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="OTP digit 5" />
+            <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="OTP digit 6" />
+          </div>
+          <button type="button" class="button button--primary" data-action="verify-parent-otp">
+            Verify OTP
+          </button>
+        </section>
+
+        <p class="linking-status" data-linking-status data-state="idle"></p>
+      </div>
+    </dialog>
+
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
